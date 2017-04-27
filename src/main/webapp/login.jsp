@@ -7,11 +7,11 @@
     <title>Login</title>
 </head>
 <body>
-<form method="post" action="/courses/">
+<form method="post">
     Enter username : <input type="text" name="login"/><br>
     Enter password : <input type="password" name="password"/><br>
     <input type="submit" value="login"/>
 </form>
-
+<a href="/registration">Регистрация</a>
 </body>
 </html>

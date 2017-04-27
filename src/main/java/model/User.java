@@ -1,4 +1,4 @@
-package com.vadim.models;
+package main.java.model;
 
 
 import main.java.model.Role;
@@ -12,6 +12,25 @@ public class User {
     private String firstName;
     private String lastName;
 
+    public User(String login, String password, String firstName, String lastName) {
+        this.role = new Role(1, "Пользователь");
+        this.login = login;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", role=" + role +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 
     /**
      * Gets the value of the id property.
