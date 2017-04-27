@@ -1,18 +1,29 @@
 package main.java.controllers;
 
+import main.java.model.Course;
+import main.java.services.CourseService;
+import main.java.services.CourseServiseImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by vadim on 25.04.2017.
  */
 public class CourseListServlet extends HttpServlet {
+    private CourseService courseService = new CourseServiseImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("courses.jsp").forward(req, resp);
+        String login = (String) req.getSession().getAttribute("userLogin");
+        req.setAttribute("studentHello", "Ваш логин: " + login);
+        List<Course> courses = courseService.listCourses();
+        req.setAttribute("coursesList", courses);
+        req.getRequestDispatcher("/courses.jsp").forward(req, resp);
     }
 
     @Override

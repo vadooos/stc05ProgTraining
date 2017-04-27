@@ -4,6 +4,15 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <filter>
+    <filter-name>WhiteList</filter-name>
+    <filter-class>main.java.controllers.filters.WhiteList</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>WhiteList</filter-name>
+    <url-pattern>/courses</url-pattern>
+  </filter-mapping>
+
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>main.java.controllers.LoginServlet</servlet-class>
@@ -29,4 +38,5 @@
     <servlet-name>CourseListServlet</servlet-name>
     <url-pattern>/courses</url-pattern>
   </servlet-mapping>
+
 </web-app>

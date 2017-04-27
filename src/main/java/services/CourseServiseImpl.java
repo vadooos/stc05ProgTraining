@@ -1,16 +1,17 @@
 package main.java.services;
 
 import main.java.dao.CourseDao;
+import main.java.dao.CourseDaoImpl;
 import main.java.model.Course;
 
 import java.util.List;
 
 public class CourseServiseImpl implements CourseService {
-    private CourseDao courseDao;
+    private CourseDao courseDao = new CourseDaoImpl();
 
     @Override
     public void addCource(Course course) {
-
+        courseDao.insert(course);
     }
 
     @Override
@@ -30,6 +31,6 @@ public class CourseServiseImpl implements CourseService {
 
     @Override
     public List<Course> listCourses() {
-        return null;
+        return (List<Course>) courseDao.getAll();
     }
 }
