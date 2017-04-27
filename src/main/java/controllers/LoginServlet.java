@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * Created by vadim on 23.04.2017.
@@ -27,8 +28,9 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+        String md5Password = DigestUtils.md5Hex(password).toUpperCase();
 
-        if (userService.auth(login, password) != null){
+        if (userService.auth(login, md5Password) != null){
             req.getSession().setAttribute("userLogin", login);
             logger.debug("user: " + login + " logged" );
             resp.sendRedirect(req.getContextPath() + "/courses");

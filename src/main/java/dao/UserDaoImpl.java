@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao{
         throw new NotImplementedException();
     }
 
-    public User findUserByLoginAndPassword(String login, String password) {
+    public User findUserByLoginAndPassword(String login, String md5Password) {
         User user = null;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao{
                      .prepareStatement( "SELECT * FROM user WHERE user_login = ? AND user_password = ?")) {
 
             statement.setString(1, login);
-            statement.setString(2, password);
+            statement.setString(2, md5Password);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 user = createEntity(resultSet);

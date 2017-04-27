@@ -9,8 +9,8 @@ public class UserServiceImpl implements UserService {
     private static UserDao userDao = new UserDaoImpl();
 
     @Override
-    public User auth(String login, String password) {
-        User user = userDao.findUserByLoginAndPassword(login, password);
+    public User auth(String login, String md5Password) {
+        User user = userDao.findUserByLoginAndPassword(login, md5Password);
 
         return user;
     }

@@ -15,3 +15,4 @@
 <a href="/registration">Регистрация</a>
 </body>
 </html>
+
