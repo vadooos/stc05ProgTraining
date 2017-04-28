@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,11 @@ public class CourseListServlet extends HttpServlet {
         String login = (String) req.getSession().getAttribute("userLogin");
         req.setAttribute("studentHello", "Ваш логин: " + login);
         List<Course> courses = courseService.listCourses();
+//        courses = new ArrayList<>();
+        courses.add(new Course(90, "test"));
+       //List<String> courses = new ArrayList<>();
+       //courses.add("kjdslkjdklsa");
+       //courses.add("jfdkljfksd");
         req.setAttribute("coursesList", courses);
         req.getRequestDispatcher("/courses.jsp").forward(req, resp);
     }

@@ -3,6 +3,7 @@ package main.java.services;
 import main.java.dao.CourseDao;
 import main.java.dao.CourseDaoImpl;
 import main.java.model.Course;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -16,17 +17,17 @@ public class CourseServiseImpl implements CourseService {
 
     @Override
     public void updateCourse(Course course) {
-
+        throw new NotImplementedException();
     }
 
     @Override
     public void removeCourse(int id) {
-
+        throw new NotImplementedException();
     }
 
     @Override
     public Course getCourseById(int id) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
