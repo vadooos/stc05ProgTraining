@@ -16,20 +16,8 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 public class Main {
     public static void main(String[] args) {
-        /*CourseService courseService = new CourseServiseImpl();
-        List list = courseService.listCourses();
-        for (Object course:
-             list) {
-            System.out.println(course);
-        }
-*/
-        String hash = "35454B055CC325EA1AF2126E27707052";
-        String password = "pass";
-
-        String md5Hex = DigestUtils
-                .md5Hex(password).toUpperCase();
-        System.out.println(hash);
-        System.out.println(md5Hex);
+        UserService userService = new UserServiceImpl();
+        userService.addUser(new User("Vadimka", "1111", "qwer", "qwer"));
 
     }
 }

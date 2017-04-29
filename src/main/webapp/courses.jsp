@@ -21,5 +21,7 @@
             </tr>
         </c:forEach>
     </table>
+
+<a href="${pageContext.request.contextPath}/?logout=1">Log out</a>
 </body>
 </html>
