@@ -1,16 +1,20 @@
 package main.java.services;
 
+import main.java.dao.CourseDaoImpl;
 import main.java.dao.UserDao;
 import main.java.dao.UserDaoImpl;
 import main.java.model.Course;
 import main.java.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserDaoImpl userDao = new UserDaoImpl();
 
-    private static UserDao userDao = new UserDaoImpl();
 
     @Override
     public void addUser(User user) {
@@ -43,4 +47,5 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
 }

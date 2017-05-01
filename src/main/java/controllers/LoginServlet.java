@@ -4,6 +4,7 @@ import main.java.services.UserService;
 import main.java.services.UserServiceImpl;
 import org.apache.log4j.Logger;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +12,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
  * Created by vadim on 23.04.2017.
  */
 public class LoginServlet extends HttpServlet {
+    public static UserService getUserService() {
+        return userService;
+    }
+    @Autowired
+    public static void setUserService(UserService userService) {
+        LoginServlet.userService = userService;
+    }
+
     private static UserService userService = new UserServiceImpl();
     private static final Logger logger = Logger.getLogger(LoginServlet.class);
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.
+                processInjectionBasedOnServletContext(this,
+                        config.getServletContext());
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/login.jsp").forward(req, resp);

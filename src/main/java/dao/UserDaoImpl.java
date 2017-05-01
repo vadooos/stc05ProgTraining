@@ -3,6 +3,7 @@ package main.java.dao;
 import main.java.model.User;
 import main.java.services.ConnectionPool;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.Connection;
@@ -11,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-
+@Repository
 public class UserDaoImpl implements UserDao{
     private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
 
