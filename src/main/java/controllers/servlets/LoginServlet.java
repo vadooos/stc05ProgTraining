@@ -1,4 +1,4 @@
-package main.java.controllers;
+package main.java.controllers.servlets;
 
 import main.java.services.UserService;
 import main.java.services.UserServiceImpl;
@@ -10,24 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-/**
- * Created by vadim on 23.04.2017.
- */
 public class LoginServlet extends HttpServlet {
-    public static UserService getUserService() {
-        return userService;
-    }
-    @Autowired
-    public static void setUserService(UserService userService) {
-        LoginServlet.userService = userService;
-    }
 
-    private static UserService userService = new UserServiceImpl();
+
+    private UserService userService = new UserServiceImpl();
     private static final Logger logger = Logger.getLogger(LoginServlet.class);
 
     @Override
@@ -53,13 +44,17 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         String md5Password = DigestUtils.md5Hex(password).toUpperCase();
 
-        if (userService.auth(login, md5Password) != null){
-            req.getSession().setAttribute("userLogin", login);
-            logger.debug("user: " + login + " logged" );
-            resp.sendRedirect(req.getContextPath() + "/courses");
-        } else {
-            req.setAttribute("servletMsg", "Неудача");
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+        try {
+            if (userService.auth(login, md5Password) != null){
+                req.getSession().setAttribute("userLogin", login);
+                logger.debug("user: " + login + " logged" );
+                resp.sendRedirect(req.getContextPath() + "/courses");
+            } else {
+                req.setAttribute("servletMsg", "Неудача");
+                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }

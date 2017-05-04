@@ -2,12 +2,12 @@ package main.java.services;
 
 import main.java.model.Course;
 import main.java.model.User;
+import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by vadim on 24.04.2017.
- */
+
 public interface UserService {
 
     public void addUser(User user);
@@ -15,5 +15,5 @@ public interface UserService {
     public void removeUser(int id);
     public Course getUserById(int id);
     public List<User> listUsers();
-    User auth(String login, String password);
+    User auth(String login, String password) throws SQLException;
 }

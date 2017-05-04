@@ -3,6 +3,7 @@ package main.java.dao;
 import main.java.model.Course;
 import main.java.services.ConnectionPool;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.Connection;
@@ -13,9 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by vadim on 27.04.2017.
- */
+@Repository
 public class CourseDaoImpl implements CourseDao {
     private static final Logger logger = Logger.getLogger(CourseDaoImpl.class);
 

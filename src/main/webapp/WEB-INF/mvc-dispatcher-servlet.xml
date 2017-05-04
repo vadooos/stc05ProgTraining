@@ -4,13 +4,16 @@
              xmlns:context="http://www.springframework.org/schema/context"
              xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <annotation-driven/>
-    <context:component-scan base-package="main"/>
+    <context:annotation-config></context:annotation-config>
+    <context:component-scan base-package="main.java"/>
 
 
 
-
-
-
+    <beans:bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="prefix" value="/"></beans:property>
+        <beans:property name="suffix" value=".jsp"></beans:property>
+    </beans:bean>
 
 
 </beans:beans>

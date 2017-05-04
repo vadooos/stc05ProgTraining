@@ -8,6 +8,8 @@ import main.java.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -42,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User auth(String login, String md5Password) {
+    public User auth(String login, String md5Password) throws SQLException {
         User user = userDao.findUserByLoginAndPassword(login, md5Password);
 
         return user;

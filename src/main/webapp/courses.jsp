@@ -8,8 +8,13 @@
 </head>
 <body>
 <h2>
-    <%=request.getAttribute("studentHello")%>
+    <%=request.getAttribute("coursesList2")%>
+    <%=request.getAttribute("userLogin2")%>
+    <%=request.getSession().getAttribute("userLogin")%>
+    <c:out value="${trip.trips_pkey}"></c:out>
+    <c:out value="${userLogin2}"></c:out>
     <%=((List)request.getAttribute("coursesList")).size()%>
+    <%=((String)request.getAttribute("userLogin"))%>
 </h2>
 
     <h2>Список курсов:</h2>

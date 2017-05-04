@@ -1,8 +1,9 @@
-package main.java.controllers;
+package main.java.controllers.servlets;
 
 import main.java.model.Course;
 import main.java.services.CourseService;
 import main.java.services.CourseServiseImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,12 +13,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class CourseListServlet extends HttpServlet {
+    @Autowired
     private CourseService courseService = new CourseServiseImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = (String) req.getSession().getAttribute("userLogin");
-        req.setAttribute("studentHello", "Ваш логин: " + login);
+        req.setAttribute("yourLogin", "Ваш логин: " + login);
         List<Course> courses = courseService.listCourses();
         courses.add(new Course(90, "test"));
         req.setAttribute("coursesList", courses);

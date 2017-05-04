@@ -1,10 +1,12 @@
-package main.java.controllers;
+package main.java.controllers.servlets;
 
+import main.java.controllers.servlets.LoginServlet;
 import main.java.model.User;
 import main.java.services.UserService;
 import main.java.services.UserServiceImpl;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +19,9 @@ import java.io.IOException;
  */
 public class RegistrationServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(LoginServlet.class);
-    private static UserService userService = new UserServiceImpl();
+
+    @Autowired
+    private UserService userService = new UserServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/registration.jsp").forward(req, resp);

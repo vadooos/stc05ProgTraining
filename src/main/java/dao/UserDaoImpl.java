@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao{
         throw new NotImplementedException();
     }
 
-    public User findUserByLoginAndPassword(String login, String md5Password) {
+    public User findUserByLoginAndPassword(String login, String md5Password) throws SQLException {
         User user = null;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -64,8 +64,9 @@ public class UserDaoImpl implements UserDao{
             if (resultSet.next()) {
                 user = createEntity(resultSet);
             }
+            connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new SQLException(e.getMessage());
         }
         return user;
     }
