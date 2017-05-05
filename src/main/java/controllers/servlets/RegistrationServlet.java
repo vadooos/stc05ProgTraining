@@ -1,6 +1,7 @@
 package main.java.controllers.servlets;
 
 import main.java.controllers.servlets.LoginServlet;
+import main.java.model.Role;
 import main.java.model.User;
 import main.java.services.UserService;
 import main.java.services.UserServiceImpl;
@@ -35,7 +36,7 @@ public class RegistrationServlet extends HttpServlet {
         String md5Password = DigestUtils.md5Hex(password).toUpperCase();
         String firstName = req.getParameter("user_firstname");
         String lastName = req.getParameter("user_lastname");
-        User user = new User(login, md5Password, firstName, lastName);
+        User user = new User(new Role(1), login, md5Password, firstName, lastName);
         userService.addUser(user);
 
         req.getSession().setAttribute("userLogin", login);

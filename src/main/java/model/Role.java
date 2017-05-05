@@ -10,6 +10,11 @@ public class Role {
         this.name = name;
     }
 
+    public Role (int id){
+        this.id = id;
+        this.name = id == 0 ? "Администратор" : "Пользователь";
+    }
+
     /**
      * Gets the value of the id property.
      */

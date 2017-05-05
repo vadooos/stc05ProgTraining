@@ -12,8 +12,8 @@ public class User {
     private String firstName;
     private String lastName;
 
-    public User(String login, String password, String firstName, String lastName) {
-        this.role = new Role(1, "Пользователь");
+    public User(Role role, String login, String password, String firstName, String lastName) {
+        this.role = role;
         this.login = login;
         this.password = password;
         this.firstName = firstName;

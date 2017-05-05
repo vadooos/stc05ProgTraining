@@ -1,20 +1,14 @@
 package main.java.controllers;
 
 import main.java.model.Course;
-import main.java.model.User;
 import main.java.services.CourseService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,19 +17,50 @@ import java.util.List;
 @SessionAttributes("userLogin")
 public class CourseListController {
 
+    private final CourseService courseService;
+    private static final Logger logger = Logger.getLogger(LoginController.class);
+
     @Autowired
-    private CourseService courseService;
+    public CourseListController(CourseService courseService) {
+        this.courseService = courseService;
+    }
+    //ControllerAdvice - сделать обработку исключений через этот класс
 
 
     @RequestMapping(value = "/courses", method = RequestMethod.GET)
-    public ModelAndView courses(@ModelAttribute("userLogin") String userLogin/*@ModelAttribute String userLogin*/ /*Model model*/) throws ServletException, IOException {
+    public ModelAndView courses(@ModelAttribute("userLogin") String userLogin) throws ServletException, IOException {
         List<Course> courses = courseService.listCourses();
-        courses.add(new Course(90, "test"));
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("courses");
 
         modelAndView.getModelMap().addAttribute("coursesList", courses);
         modelAndView.getModelMap().addAttribute("coursesList2", userLogin);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/editcourses", method = RequestMethod.GET)
+    public ModelAndView editCourses(@ModelAttribute("userLogin") String userLogin) throws ServletException, IOException {
+        List<Course> courses = courseService.listCourses();
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("editcourses");
+        modelAndView.getModelMap().addAttribute("coursesList", courses);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/editcourses/add", method = RequestMethod.POST)
+    public ModelAndView addCourse(/*@RequestParam(value = "course_id", required = true) int id,*/
+                            @RequestParam(value = "course_name", required = true) String name){
+        ModelAndView modelAndView = new ModelAndView();
+        Course course = new Course(name);
+        courseService.addCource(course);
+        logger.info("Added course: " + name);
+        List<Course> courses = courseService.listCourses();
+
+        modelAndView.setViewName("editcourses");
+        modelAndView.getModelMap().addAttribute("coursesList", courses);
 
         return modelAndView;
     }

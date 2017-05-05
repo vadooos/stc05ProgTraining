@@ -6,10 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -43,8 +40,17 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public Integer insert(Course entity) {
-        throw new NotImplementedException();
+    public Integer insert(Course course) {
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement statement = connection
+                     .prepareStatement( "insert into course (course_name) values (?)")) {
+            statement.setString(1, course.getName());
+            statement.executeUpdate();
+            return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
@@ -52,8 +58,18 @@ public class CourseDaoImpl implements CourseDao {
         throw new NotImplementedException();
     }
 
+
     @Override
-    public void delete(Course entity) {
-        throw new NotImplementedException();
+    public void delete(int idCourse) {
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement statement = connection
+                     .prepareStatement( "Delete from course " +
+                             " WHERE id = ?")) {
+            statement.setInt(1, idCourse);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

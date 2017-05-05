@@ -1,5 +1,6 @@
 package main.java.dao;
 
+import main.java.model.Role;
 import main.java.model.User;
 import main.java.services.ConnectionPool;
 import org.apache.log4j.Logger;
@@ -47,7 +48,7 @@ public class UserDaoImpl implements UserDao{
         throw new NotImplementedException();
     }
 
-    public void delete(User entity) {
+    public void delete(int id) {
         throw new NotImplementedException();
     }
 
@@ -72,7 +73,11 @@ public class UserDaoImpl implements UserDao{
     }
 
     private User createEntity(ResultSet resultSet) throws SQLException {
-        return new User(resultSet.getString("user_login"),
+        Role role;
+        int idRole = resultSet.getInt("role_id");
+        return new User(
+                new Role(idRole),
+                resultSet.getString("user_login"),
                 resultSet.getString("user_password"),
                 resultSet.getString("user_first_name"),
                 resultSet.getString("user_last_name"));

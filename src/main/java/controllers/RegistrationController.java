@@ -1,5 +1,6 @@
 package main.java.controllers;
 
+import main.java.model.Role;
 import main.java.model.User;
 import main.java.services.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -35,7 +36,7 @@ public class RegistrationController {
                                      @RequestParam(value = "user_lastname", required = true) String lastName){
         ModelAndView mav = new ModelAndView();
         String md5Password = DigestUtils.md5Hex(password).toUpperCase();
-        User user = new User(login, md5Password, firstName, lastName);
+        User user = new User(new Role(1), login, md5Password, firstName, lastName);
         userService.addUser(user);
 
         logger.debug("user: " + login + " logged" );

@@ -16,6 +16,10 @@ public class Course {
         this.name = name;
     }
 
+    public Course(String name){
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
