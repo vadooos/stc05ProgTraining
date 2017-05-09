@@ -1,4 +1,4 @@
-package main.java.controllers.filters;
+package main.controllers.filters;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

@@ -1,6 +1,5 @@
-package main.java.controllers.servlets;
+package main.controllers.servlets;
 
-import main.java.controllers.servlets.LoginServlet;
 import main.java.model.Role;
 import main.java.model.User;
 import main.java.services.UserService;

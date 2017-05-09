@@ -1,4 +1,4 @@
-package main.java.controllers;
+package main.controllers;
 
 import main.java.model.Role;
 import main.java.model.User;

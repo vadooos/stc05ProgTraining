@@ -1,4 +1,4 @@
-package main.java.controllers.servlets;
+package main.controllers.servlets;
 
 import main.java.model.Course;
 import main.java.services.CourseService;
