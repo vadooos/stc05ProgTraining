@@ -8,7 +8,16 @@
 
 
     <http auto-config="true">
-        <intercept-url pattern="/admin**" access="ROLE_USER" />
+        <intercept-url pattern="/cources/*" access="ROLE_ADMIN" />
+
+        <access-denied-handler error-page="/403" />
+        <form-login
+                login-page="/login"
+                default-target-url="/courses"
+                authentication-failure-url="/login?error"
+                username-parameter="username"
+                password-parameter="password" />
+        <logout logout-success-url="/login?logout"  />
     </http>
 
 <authentication-manager>
@@ -18,9 +27,14 @@
                                    "select user_login, user_password, 1 from user where user_login=?"
                            authorities-by-username-query=
                                    "select user_login, role_name
-                                   from user_roles
+                                   from user
                                    inner join role ON role.role_id = user.role_id
                                     where user_login =?  " />
+        <!--<user-service>-->
+            <!--<user name="ad" password="123" authorities="ROLE_USER" />-->
+
+        <!--</user-service>-->
+
     </authentication-provider>
 </authentication-manager>
 
