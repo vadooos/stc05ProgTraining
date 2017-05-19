@@ -11,7 +11,7 @@
     <title>Hello</title>
 </head>
 <body>
-<a href="/login">Log in</a>
+<a href="/login">Log in</a><br><br>
 <a href="/registration">Registration</a>
 </body>
 </html>

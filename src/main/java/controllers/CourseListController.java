@@ -1,6 +1,6 @@
 package main.java.controllers;
 
-import main.controllers.LoginController;
+import main.controllers_old.LoginController;
 import main.java.model.Course;
 import main.java.services.CourseService;
 import org.apache.log4j.Logger;
@@ -29,7 +29,7 @@ public class CourseListController {
     public CourseListController(CourseService courseService) {
         this.courseService = courseService;
     }
-    //ControllerAdvice - сделать обработку исключений через этот класс
+
 
 
     @RequestMapping(value = "/courses", method = RequestMethod.GET)
@@ -50,7 +50,6 @@ public class CourseListController {
         modelAndView.getModelMap().addAttribute("coursesList2", userLogin);
 
         return modelAndView;
-        
-
     }
 }
+//ControllerAdvice - сделать обработку исключений через этот класс

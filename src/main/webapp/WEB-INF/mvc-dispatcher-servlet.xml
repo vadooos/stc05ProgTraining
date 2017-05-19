@@ -15,7 +15,7 @@
     <beans:bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
 
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <beans:property name="prefix" value="/"></beans:property>
+        <beans:property name="prefix" value="/WEB-INF/pages/"></beans:property>
         <beans:property name="suffix" value=".jsp"></beans:property>
     </beans:bean>
 

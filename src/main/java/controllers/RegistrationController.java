@@ -1,6 +1,6 @@
 package main.java.controllers;
 
-import main.controllers.LoginController;
+import main.controllers_old.LoginController;
 import main.java.model.Role;
 import main.java.model.User;
 import main.java.services.UserService;

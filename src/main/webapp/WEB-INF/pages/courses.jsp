@@ -7,12 +7,12 @@
     <title>Курсы</title>
 </head>
 <body>
-<h2>
+<h3>
     <a href="${pageContext.request.contextPath}/?logout=1">Log out</a><br>
     <%=request.getSession().getAttribute("userLogin")%>
-</h2>
+</h3>
 
-    <h2>Список курсов:</h2>
+    <h3>Список курсов:</h3>
     <table>
         <c:forEach items="${requestScope.coursesList}" var="course">
             <tr>

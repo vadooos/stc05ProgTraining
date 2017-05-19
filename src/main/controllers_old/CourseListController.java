@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers_old;
 
 import main.java.model.Course;
 import main.java.services.CourseService;
